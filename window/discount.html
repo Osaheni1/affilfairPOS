@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Custom Cart Discount</title>
+  </head>
+  <body class="bg-gray-100 overflow-hidden">
+    <div class="mb-2 mx-3">
+      <h1 class="mb-1 mt-2 font-medium text-xs">
+        Apply the discount to all items: Cart Total:
+        <span id="cart_total"></span>
+      </h1>
+      <div class="border border-gray-300 rounded bg-white p-2">
+        <h2 class="text-sm">Discount Type</h2>
+        <div class="flex text-xs my-1">
+          <div class="flex items-center justify-center mr-4">
+            <input type="radio" class="mr-1" id="percent" checked />
+            <label>Percent</label>
+          </div>
+          <div class="flex items-center justify-center">
+            <input type="radio" class="mr-1" id="fixed" />
+            <label>Fixed</label>
+          </div>
+        </div>
+        <div class="text-xs flex flex-col">
+          <label class="mb-1">Percent(%) off the total invoice amount</label>
+          <input
+            type="number"
+            class="border border-gray-300 p-1 mb-1"
+            id="input_discount"
+          />
+          <span class="text-gray-500"
+            >Total discounted amount is: <span id="discounted_amount"></span
+          ></span>
+        </div>
+      </div>
+      <div class="border border-gray-300 bg-gray-50 flex justify-center mt-2">
+        <button
+          class="py-0.5 w-full hover:bg-blue-200 cursor-default"
+          id="discount_btn"
+        >
+          Apply
+        </button>
+      </div>
+    </div>
+
+    <script src="../windowscript/discount.js"></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Sales</title>
+  </head>
+  <body class="bg-gray-100 overflow-hidden">
+    <div class="">
+      <div class="bg-white mx-2 mt-0.5 p-3 shadow">
+        <h1 class="font-bold">Sales</h1>
+        <h2 class="text-sm">All sales made are displayed in the table below</h2>
+      </div>
+      <div class="bg-white mx-2 mt-2 p-3 shadow h-112">
+        <input
+          type="search"
+          class="border border-gray-300 mt-2 text-xs placeholder:text-xs px-1 py-1"
+          placeholder="Search by sale's bill number"
+          id="sale_search"
+        />
+        <div>
+          <ul class="flex mt-5 py-1 px-0.5 bg-gray-100 text-sm">
+            <li class="w-2/12">Bill No.</li>
+            <li class="w-2/12">Date Time</li>
+            <li class="w-4/12">Customer Name</li>
+            <li class="w-2/12">Subtotal (#)</li>
+          </ul>
+          <div
+            class="h-85 overflow-scroll overflow-x-hidden"
+            id="sales_list"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script src="../windowscript/sales.js"></script>
+  </body>
+</html>

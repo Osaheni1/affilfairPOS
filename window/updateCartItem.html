@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Update Cart Item</title>
+  </head>
+  <body>
+    <div class="m-2">
+      <h1 class="mb-2 ml-2 font-medium" id="title"></h1>
+      <div class="border border-gray-300">
+        <h2 class="text-xs my-2 font-bold text-center">Change Quantity</h2>
+        <div
+          class="bg-gray-200 mx-8 flex items-center justify-center h-16 border border-gray-300 rounded"
+        >
+          <strong class="mr-1" id="display"></strong><span> pieces</span>
+        </div>
+        <div class="flex justify-center my-1">
+          <span id="total_amount"></span>
+        </div>
+      </div>
+    </div>
+    <div class="m-2">
+      <div class="grid grid-cols-4 gap-1">
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="one"
+          >1</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="two"
+          >2</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="three"
+          >3</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="four"
+          >4</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="five"
+          >5</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="six"
+          >6</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="seven"
+          >7</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="eight"
+          >8</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="nine"
+          >9</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="zero"
+          >0</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="dot"
+          >.</span
+        >
+        <span
+          class="h-10 w-16 bg-gray-200 text-center flex justify-center items-center hover:bg-blue-200 cursor-default"
+          id="del"
+          >Del</span
+        >
+      </div>
+      <div class="border border-gray-300 flex justify-center mt-3">
+        <button
+          class="py-0.5 w-full hover:bg-blue-200 cursor-default"
+          id="update_btn"
+        >
+          Apply
+        </button>
+      </div>
+    </div>
+
+    <script src="../windowscript/updateCartItem.js"></script>
+  </body>
+</html>

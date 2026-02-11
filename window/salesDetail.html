@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Sale Details</title>
+  </head>
+  <body class="bg-gray-100 overflow-hidden">
+    <div class="m-2">
+      <div class="flex">
+        <button
+          class="border border-gray-300 px-2 py-1 text-xs bg-white flex mr-2 hover:bg-blue-200"
+          id="print_receipt"
+        >
+          <img src="../assets/printing.png" alt="delete" class="h-4
+          cursor-pointer mr-1"" />
+          <span> Print Receipt </span>
+        </button>
+        <button
+          class="border border-gray-300 px-2 py-1 text-xs bg-white flex hover:bg-blue-200"
+          id="print_invoice"
+        >
+          <img
+            src="../assets/printing.png"
+            alt="delete"
+            class="h-4 cursor-pointer mr-1"
+          />
+          <span> Print invoice </span>
+        </button>
+      </div>
+      <div class="flex mt-2">
+        <div class="bg-white text-xs w-2/6 mr-0.5 p-2">
+          <h1 class="font-bold mb-2">Sales Details</h1>
+          <p class="mb-2">
+            Bill Number
+            <span class="ml-4">:</span>
+            <span class="ml-4" id="bill_number">i49858304900</span>
+          </p>
+          <p class="mb-2">
+            Sales Date
+            <span class="ml-4">:</span>
+            <span class="ml-6" id="bill_date">34/43/3434 43:34 AM</span>
+          </p>
+        </div>
+        <div class="bg-white text-xs w-2/6 mr-0.5 p-2">
+          <h1 class="font-bold mb-2">Customer Details</h1>
+          <p class="mb-2">
+            Customer Name
+            <span class="ml-2">:</span
+            ><span class="ml-4" id="customer"> Anonymous</span>
+          </p>
+        </div>
+        <div class="bg-white text-xs w-2/6 p-2">
+          <h1 class="font-bold mb-2">Transaction Details</h1>
+          <p class="mb-2">
+            Item Total
+            <span class="ml-4">:</span>
+            <span class="ml-10.5" id="total"># 440</span>
+          </p>
+          <p class="mb-2">
+            Total Discount
+            <span class="ml-4">:</span>
+            <span class="ml-5" id="discount"># 20</span>
+          </p>
+          <p class="mb-2">
+            Sub Total
+            <span class="ml-4">:</span>
+            <span class="ml-12" id="subtotal"># 420</span>
+          </p>
+        </div>
+      </div>
+      <div class="bg-white my-2">
+        <h1 class="font-bold p-2 text-xs">Items</h1>
+        <ul class="flex mt-1 mx-1 py-1 px-0.5 bg-gray-100 text-xs">
+          <li class="w-3/6">Product Name</li>
+          <li class="w-1/6">Price</li>
+          <li class="w-1/6">Quantity</li>
+          <li class="w-1/6">Subtotal</li>
+        </ul>
+        <div
+          class="h-77 overflow-scroll overflow-x-hidden px-3"
+          id="sales_list"
+        ></div>
+      </div>
+    </div>
+    <script src="../windowscript/salesDetail.js"></script>
+  </body>
+</html>

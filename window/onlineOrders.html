@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>online Orders</title>
+  </head>
+  <body class="bg-gray-100 overflow-hidden">
+    <div class="">
+      <div class="bg-white mx-2 mt-0.5 p-3 shadow">
+        <h1 class="font-bold">Online Orders</h1>
+        <h2 class="text-sm">
+          All orders made on the website are displayed in the table below
+        </h2>
+      </div>
+      <div class="bg-white mx-2 mt-2 p-3 shadow h-112">
+        <div class="flex justify-between">
+          <input
+            type="search"
+            class="border border-gray-300 mt-2 text-xs placeholder:text-xs px-1 py-1"
+            placeholder="Search by order's id"
+            id="order_search"
+          />
+          <img
+            src="../assets/reload.png"
+            alt="reload"
+            class="h-4 cursor-pointer m-2"
+            id="reload"
+          />
+        </div>
+        <div>
+          <ul class="flex mt-5 py-1 px-0.5 bg-gray-100 text-sm">
+            <li class="w-2/12">Product Id</li>
+            <li class="w-2/12">Date Time</li>
+            <li class="w-3/12">Customer email</li>
+            <li class="w-2/12">Subtotal (#)</li>
+            <li class="w-2/12">Order Status</li>
+          </ul>
+          <div
+            class="h-85 overflow-scroll overflow-x-hidden"
+            id="order_list"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script src="../windowscript/onlineOrders.js"></script>
+  </body>
+</html>

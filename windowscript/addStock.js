@@ -1,0 +1,114 @@
+const addQuant = document.getElementById("stockin");
+const stockAfter = document.getElementById("stock_after");
+const itemName = document.getElementById("item_name");
+const reason = document.getElementById("reason");
+const addBtn = document.getElementById("addstock_btn");
+const product = JSON.parse(localStorage.getItem("ManageInventory")) || null;
+
+let dbp;
+let dbh;
+
+itemName.value = product.shortName;
+stockAfter.value = product.stockQuantity + Number(addQuant.value);
+
+addQuant.addEventListener("input", () => {
+  stockAfter.value = product.stockQuantity + Number(addQuant.value);
+});
+
+addBtn.addEventListener("click", () => {
+  console.log("stoock button clicked");
+  const data = {
+    quantity: product.stockQuantity + Number(addQuant.value),
+    id: product._id,
+  };
+  window.electronApi.ipcSend("add-stock", data);
+});
+
+window.electronApi.ipcReceive("stock-added", (event, data) => {
+  const requestp = indexedDB.open("AllProducts");
+
+  requestp.onerror = () => {
+    console.log("Failed to open the DB");
+  };
+
+  requestp.onupgradeneeded = () => {
+    dbp = requestp.result;
+    const store = dbp.createObjectStore("product", {
+      keyPath: "id",
+      autoIncrement: true,
+    });
+    store.createIndex("product_name", ["shortName"], { unique: false });
+    store.createIndex("product_id", ["_id"], { unique: false });
+  };
+
+  requestp.onsuccess = function () {
+    console.log("request created successfully");
+    dbp = requestp.result;
+    const transaction = dbp.transaction("product", "readwrite");
+    const store = transaction.objectStore("product");
+
+    const productIndex = store.index("product_id");
+    const updateProduct = productIndex.get([product._id]);
+
+    updateProduct.onsuccess = function () {
+      updateProduct.result.stockQuantity =
+        product.stockQuantity + Number(addQuant.value);
+      store.put(updateProduct.result);
+      console.log(updateProduct.result);
+      historyFunc();
+      localStorage.setItem(
+        "ManageInventory",
+        JSON.stringify(updateProduct.result),
+      );
+      window.electronApi.ipcSend("close-type4-window");
+    };
+  };
+});
+
+// const invoiceList = {
+//       billNumber: Date.now(),
+//       date: new Date(Date.now()).toLocaleString(),
+//       customer: "Anonymous",
+//       subtotal: toBePrinted,
+
+//       sales: toPrint,
+//     };
+//     localStorage.setItem("invoice", JSON.stringify(invoiceList));
+
+const requesth = indexedDB.open("transHistory");
+
+requesth.onerror = () => {
+  console.log("Failed to open the DB");
+};
+
+requesth.onupgradeneeded = () => {
+  dbh = requesth.result;
+  const store = dbh.createObjectStore("history", {
+    keyPath: "id",
+    autoIncrement: true,
+  });
+  // store.createIndex("product_name", ["shortName"], { unique: false });
+  store.createIndex("history_id", ["id"], { unique: false });
+};
+
+requesth.onsuccess = function () {
+  dbh = requesth.result;
+
+  // localStorage.setItem("invoice", JSON.stringify(invoiceList));
+};
+
+function historyFunc() {
+  const transaction = dbh.transaction("history", "readwrite");
+  const store = transaction.objectStore("history");
+
+  const histransaction = {
+    prodId: product._id,
+    date: new Date(Date.now()).toLocaleString(),
+    transQuant: addQuant.value,
+    beforeTrans: product.stockQuantity,
+    afterTrans: product.stockQuantity + Number(addQuant.value),
+    description: reason.value ? reason.value : "Product restocked",
+  };
+
+  store.put(histransaction);
+}

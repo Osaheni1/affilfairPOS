@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Order Details</title>
+  </head>
+  <body class="bg-gray-100 overflow-hidden">
+    <div class="m-2">
+      <div class="flex mt-2">
+        <div class="bg-white text-xs w-2/6 mr-0.5 p-2">
+          <h1 class="font-bold mb-2">Order Details</h1>
+          <p class="mb-2">
+            Order Id
+            <span class="ml-8">:</span>
+            <span class="ml-4" id="order_id">i49858304900</span>
+          </p>
+          <p class="mb-2">
+            Order Date
+            <span class="ml-4">:</span>
+            <span class="ml-3" id="order_date">34/43/3434 43:34 AM</span>
+          </p>
+        </div>
+        <div class="bg-white text-xs w-2/6 mr-0.5 p-2">
+          <h1 class="font-bold mb-2">Customer Details</h1>
+          <p class="mb-2">
+            Customer Email
+            <span class="ml-2">:</span
+            ><span class="ml-4" id="customer_email"> Anonymous</span>
+          </p>
+        </div>
+        <div class="bg-white text-xs w-2/6 p-2">
+          <h1 class="font-bold mb-2">Transaction Details</h1>
+
+          <p class="mb-2">
+            Sub Total
+            <span class="ml-8.5">:</span>
+            <span class="ml-12" id="subtotal"># 420</span>
+          </p>
+          <p class="mb-2">
+            Order Status
+            <span class="ml-4">:</span>
+            <span class="ml-12" id="order_status"># 420</span>
+          </p>
+          <p class="mb-2">
+            Payment
+            <span class="ml-9">:</span>
+            <span class="ml-12" id="payment"># 420</span>
+          </p>
+        </div>
+      </div>
+      <div class="bg-white my-2">
+        <h1 class="font-bold p-2 text-xs">Items</h1>
+        <ul class="flex mt-1 mx-1 py-1 px-0.5 bg-gray-100 text-xs">
+          <li class="w-2/6">Product Name</li>
+          <li class="w-1/6">Price</li>
+          <li class="w-1/6">Quantity</li>
+          <li class="w-1/6">Subtotal</li>
+          <!-- <li class="w-1/6">Subtotal</li> -->
+        </ul>
+        <div
+          class="h-77 overflow-scroll overflow-x-hidden px-3"
+          id="order_list"
+        ></div>
+      </div>
+      <div class="flex justify-between">
+        <div class="mb-2 ml-2">
+          <button
+            class="bg-red-800 py-1 px-3 rounded text-white font-bold text-sm cursor-pointer"
+            id="cancel_order"
+          >
+            Cancel Order
+          </button>
+        </div>
+        <div class="mb-2">
+          <button
+            class="bg-blue-800 py-1 px-3 rounded text-white font-bold text-sm cursor-pointer"
+            id="checkout"
+          >
+            Checkout Order
+          </button>
+          <input type="checkbox" checked id="print_receipt" />
+          <label class="text-xs">Print Receipt</label>
+        </div>
+      </div>
+    </div>
+    <script src="../windowscript/orderDetail.js"></script>
+  </body>
+</html>

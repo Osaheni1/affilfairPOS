@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Stock</title>
+  </head>
+  <body class="bg-gray-100 overflow-hidden">
+    <div class="">
+      <div class="bg-white mx-2 mt-0.5 p-3 shadow">
+        <h1 class="font-bold">Live Stock Report</h1>
+        <h2 class="text-sm">
+          View the live stock report for your current outlet
+        </h2>
+      </div>
+      <div class="bg-white mx-2 mt-2 p-3 shadow h-112">
+        <input
+          type="search"
+          class="border border-gray-300 mt-2 text-xs placeholder:text-xs px-1 py-1"
+          placeholder="Search by name"
+          id="stock_search"
+        />
+        <div class="mt-5">
+          <div class="flex">
+            <button
+              class="border p-1 text-xs mr-2 cursor-pointer bg-gray-200"
+              id="all_prod"
+            >
+              All Products
+            </button>
+            <button
+              class="text-xs p-1 cursor-pointer bg-gray-200 mr-2"
+              id="out_stock"
+            >
+              Out of Stock
+            </button>
+            <button
+              class="text-xs p-1 cursor-pointer bg-gray-200 mr-2"
+              id="below_stock"
+            >
+              Below minimum stock
+            </button>
+          </div>
+          <ul class="flex w-full mt-2 py-1 px-0.5 bg-gray-100 text-sm">
+            <li class="w-3/6">Product Name</li>
+            <li class="w-2/6">Barcode</li>
+            <li class="w-1/6">Stock</li>
+          </ul>
+          <div
+            class="h-85 overflow-scroll overflow-x-hidden"
+            id="stock_list"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script src="../windowscript/stock.js"></script>
+  </body>
+</html>

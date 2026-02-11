@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src https://affilfair.com 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="./styles.css" rel="stylesheet" />
+    <link href="./src/output.css" rel="stylesheet" />
+
+    <title>Affilfair</title>
+  </head>
+  <body>
+    <div class="h-svh overflow-hidden"> 
+      <div class="border-b border-gray-300 h-2/12">
+        <div class="flex justify-between mx-3 mt-1 ">
+          <div class="flex">
+            <div
+              class="h-25 w-25 mr-1 bg-gray-100 flex flex-col justify-center items-center cursor-default hover:bg-blue-200" id="salesbtn"
+            >
+              <img src="assets/sales.png" alt="sales-img" class="h-2/4" />
+              <span class="text-xs font-bold mt-0.5">Sales</span>
+            </div>
+            <div
+              class="h-25 w-25 mr-1 bg-gray-100 flex flex-col justify-center items-center cursor-default hover:bg-blue-200" id="orderbtn"
+            >
+              <img src="assets/order.png" alt="order" class="h-2/4" />
+              <span class="text-xs font-bold mt-0.5 px-1 text-center"
+                >Online Orders</span
+              >
+            </div>
+            <div
+              class="h-25 w-25 mr-1 bg-gray-100 flex flex-col justify-center cursor-default items-center hover:bg-blue-200" id="inventory"
+            >
+              <img src="assets/inventory.png" alt="products" class="h-2/4" />
+              <span class="text-xs font-bold mt-0.5 px-1 text-center"
+                >Products</span
+              >
+            </div>
+            <div
+              class="h-25 w-25 mr-1 bg-gray-100 flex flex-col justify-center cursor-default items-center hover:bg-blue-200" id="stock"
+            >
+              <img src="assets/parcel.png" alt="stocks" class="h-2/4" />
+              <span class="text-xs font-bold mt-0.5 px-1 text-center" 
+                >Stock</span
+              >
+            </div>
+          </div>
+
+          <div class="h-25 w-25 mr-1 flex flex-col justify-center items-center cursor-default hover:bg-blue-200" id="signout">
+            <img src="assets/exit.png" alt="signout" class="h-2/4" />
+            <span class="text-xs font-bold mt-0.5 px-1 text-center" 
+              >Sign Out</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="h-10/12 pb-4 grid grid-cols-[1fr_20rem] lg:grid-cols-[1fr_25rem] gap-1">
+        <div class=" my-1.5 mr-0.5 ml-1.5 border border-gray-300">
+          <div class="flex justify-between">
+
+          
+          <div class="flex flex-col m-1.5 w-3/4">
+            <label class="text-xs font-bold">Product Name / Scan Barcode</label>
+            <input
+              type="search"
+              placeholder="Enter product name or scan Barcode"
+              class="border border-gray-400 mt-1.5 w-3/4 py-1 px-1 opacity-70 text-sm placeholder:text-xs" id="product_search"
+            />
+          </div>
+          <div class="w-1/4 m-2 flex justify-end items-center">
+            <button
+          class="border border-gray-300 px-2 py-1 text-xs bg-white flex hover:bg-blue-200"
+          id="print_invoice"
+        >
+          <img
+            src="./assets/printing.png"
+            alt="delete"
+            class="h-4 cursor-pointer mr-1"
+          />
+          <span> Print invoice </span>
+        </button>
+          </div>
+          </div>
+          <div class="mx-1.5 mt-3 h-full">
+            <div class="flex">
+              <button class="border p-1 text-xs mr-4 cursor-pointer" id="all_prod">All</button>
+              <button class="text-xs p-1 cursor-pointer" id="category">Categories</button>
+            </div>
+            <div class="h-100 lg:h-110 m-1.5 grid grid-cols-3 lg:grid-cols-6 overflow-scroll overflow-x-hidden" id="products">
+            
+              
+            </div>
+          </div>
+        </div>
+        <div
+          class=" h-129 lg:h-138 my-1.5 ml-0.5 mr-1.5 border border-gray-300"
+        >
+          <div class="flex flex-col bg-gray-400 text-xs w-full h-2/3">
+            <ul class="flex font-bold w-full bg-gray-100 h-8 items-center px-1">
+              <li class="w-1/5 lg:w-2/6 text-nowrap overflow-hidden mr-1">
+                Item Name
+              </li>
+              <li class="w-1/5 lg:w-1/6">Qnt</li>
+              <li class="w-1/5 lg:w-1/6 ">Price(#)</li>
+              <li class="w-1/5 lg:w-1/6 ">Total(#)</li>
+            </ul>
+            <div id="list" class="overflow-scroll overflow-x-hidden">
+
+            
+            
+            </div>
+          </div>
+          <div class="h-1/3 mt-1">
+            <div class="flex justify-between">
+
+            
+            <div class="text-xs font-bold p-1">
+            <button class="bg-black text-white p-1 mr-0.5 hover:bg-blue-300" id="discount">Discount</button>
+            <!-- <button class="bg-black text-white p-1 mr-0.5">Delivery Charge</button> -->
+
+          </div>
+          <div class="text-xs font-bold p-1">
+
+            <button class="bg-red-600 text-white p-1 mr-0.5 hover:bg-blue-300" id="clear_cart">Clear Cart</button>
+          </div>
+          </div>
+          <div class="text-xs font-bold mt-1 mx-3 mb-1 lg:mb-3">
+            <div class="flex justify-between"><span>Quantity of <span id="item_quantity">0</span> items</span><span id="total_numitem">0</span></div>
+            <div class="flex justify-between"><span>Total</span><span id="total"># 3000</span></div>
+            <!-- <div class="flex justify-between"><span>Delivery Charge</span><span>200</span></div> -->
+            <div class="flex justify-between"><span>Discount</span><span id="amount_discounted">0</span></div>
+            <div class="flex justify-between mt-2 font-medium"><span>Sub Total</span><span class="font-bold" id="subtotal"># 5000</span></div>
+          </div>
+          <div class="text-xs  flex flex-col mt-2 ">
+            <div class="flex justify-start items-center ml-3">
+
+              <input type="checkbox" value="check" id="printcheckbox"/>
+              <label class="ml-1.5">Print Receipt</label>
+            </div>
+            <div class="flex justify-center mt-2">
+
+              <button class="bg-blue-800 py-1 px-3 rounded text-white font-bold cursor-pointer" id="print">Print / Save Sale</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="./load.js"></script> -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>

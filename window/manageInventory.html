@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Manage Inventory</title>
+  </head>
+  <body class="bg-gray-100 overflow-hidden">
+    <div class="bg-white m-1 p-3">
+      <div class="flex flex-col items-center text-sm">
+        <h1 class="font-black">Current Stock</h1>
+        <div class="border border-gray-300 my-1 py-3 px-10">
+          <span id="stock_quantity">4</span>
+          <span class="font-black ml-1">pieces</span>
+        </div>
+        <h2 class="font-black">Stock Adjustment</h2>
+        <div class="my-1.5">
+          <button
+            class="border border-gray-300 py-1 px-2 text-xs hover:bg-blue-200"
+            id="add_stock"
+          >
+            Add Stock
+          </button>
+          <button
+            class="border border-gray-300 py-1 px-2 text-xs hover:bg-blue-200"
+            id="remove_stock"
+          >
+            Remove Stock
+          </button>
+        </div>
+        <div>
+          <button
+            class="border border-gray-300 mt-2 py-1 px-2 text-xs hover:bg-blue-200"
+            id="view_product"
+          >
+            View Product
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <div
+          class="flex justify-end text-xs text-red-600 hover:text-blue-600 underline cursor-default w-40"
+          id="low_stock"
+        >
+          Set low stock quantity
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="bg-white m-2 p-3 h-86">
+        <h1 class="font-bold pb-2 text-xs">Inventory History</h1>
+        <ul class="flex py-1 px-0.5 bg-gray-100 text-sm">
+          <li class="w-4/12">Description</li>
+          <li class="w-2/12">Change Qnt</li>
+          <li class="w-2/12">Before Stock</li>
+          <li class="w-2/12">After Stock</li>
+          <li class="w-2/12">Created On</li>
+        </ul>
+        <div
+          class="h-60 overflow-scroll overflow-x-hidden"
+          id="inventory_history"
+        ></div>
+      </div>
+    </div>
+    <script src="../windowscript/manageInventory.js"></script>
+  </body>
+</html>

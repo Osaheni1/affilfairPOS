@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <title>Low Stock Alert</title>
+  </head>
+  <body class="">
+    <div class="p-3">
+      <p class="text-sm">
+        Enable this aler so you can stock up before the warehouse runs out. Set
+        your own threshold and we will send you a notification
+      </p>
+      <div class="flex flex-col mt-2">
+        <label class="font-bold text-gray-800 text-sm mb-1"
+          >Low stock threshold</label
+        >
+        <input
+          type="number"
+          class="border border-gray-300 placeholder:text-xs px-1 pb-1"
+          id="low_input"
+        />
+      </div>
+      <div class="border border-gray-300 flex justify-center mt-3">
+        <button
+          class="py-0.5 w-full hover:bg-blue-200 cursor-default"
+          id="low_btn"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+    <script src="../windowscript/lowStock.js"></script>
+  </body>
+</html>
