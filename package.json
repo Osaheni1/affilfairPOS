@@ -1,16 +1,22 @@
 {
   "name": "affilfair-POS",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "nodemon --watch . --ext js,html,css --exec electron .",
     "tailwind": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "release": "electron-builder --publish always"
   },
   "build": {
     "appId": "com.ec.affilfair",
     "productName": "AffilfairPOS",
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ],
     "files": [
       "**/*",
       "!**/*.ts",
@@ -18,6 +24,29 @@
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "icon": "assets/icon",
+    "win": {
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "debs",
+        "rpm"
+      ],
+      "icon": "assets/icon.png"
     }
   },
   "repository": "https://github.com/Osaheni1/affilfairPOS",
@@ -34,5 +63,8 @@
     "electron": "^39.2.7",
     "electron-builder": "^26.0.12",
     "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "electron-updater": "^6.7.3"
   }
 }

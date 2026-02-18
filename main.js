@@ -8,6 +8,7 @@ const {
   net,
   dialog,
 } = require("electron");
+const { autoUpdater } = require("electron-updater");
 const path = require("node:path");
 
 let mainWindow;
@@ -17,6 +18,8 @@ let receiptWindow;
 let type3Window;
 let type4Window;
 let orderDetailWindow;
+
+autoUpdater.autoDownload = false;
 
 function createWindow(status, data) {
   // Create the browser window.
@@ -249,7 +252,7 @@ console.log(app.getPath("userData"));
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  // console.log(net.isOnline(), net.online);
+ 
   session.defaultSession.cookies
     .get({ name: "jwt" })
     .then(async (cookies) => {
@@ -288,7 +291,7 @@ app.whenReady().then(() => {
       errorMessage("error", "Something went wrong", error);
     });
 
-  // createType3Window("onlineOrders");
+  autoUpdater.checkForUpdates();
 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
@@ -302,6 +305,36 @@ app.whenReady().then(() => {
 // explicitly with Cmd + Q.
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
+});
+
+autoUpdater.on("update-available", (info) => {
+  dialog
+    .showMessageBox(mainWindow, {
+      type: "info",
+      title: "Update Available",
+      message: `A new version is available: ${info.version}. Do you want to download it now?`,
+      buttons: ["Yes", "Later"],
+    })
+    .then((result) => {
+      if (result.response === 0) {
+        autoUpdater.downloadUpdate();
+      }
+    });
+});
+
+autoUpdater.on("update-downloaded", () => {
+  dialog
+    .showMessageBox(mainWindow, {
+      type: "info",
+      title: "Update Downloaded",
+      message: "The new version is downloaded. Do you want to install it now?",
+      buttons: ["Restart", "Later"],
+    })
+    .then((result) => {
+      if (result.response === 0) {
+        autoUpdater.quitAndInstall();
+      }
+    });
 });
 
 function errorNoAction(type, title, message) {
@@ -441,16 +474,7 @@ async function editProductAPI(id, obj, query) {
   }
 }
 
-// async function orderStatus(status, id, jwt){
-//   const res = await updateOrderStatusAPI(status, id, jwt);
-//         if (res.status === "success") {
-//           // createWindow("ready", userAccount.data.data);
-//           errorNoAction("info", "Successful", `Order ${val.form.status}`);
-//           event.sender.send("reload-order", res);
-//         } else {
-//           errorMessage("error", "Something went wrong", res.message);
-//         }
-// }
+
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

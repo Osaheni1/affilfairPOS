@@ -1,5 +1,6 @@
 const orderId = document.getElementById("order_id");
 const orderDate = document.getElementById("order_date");
+const orderType = document.getElementById("order_type");
 const customerEmail = document.getElementById("customer_email");
 const checkout = document.getElementById("checkout");
 const cancelOrder = document.getElementById("cancel_order");
@@ -21,6 +22,7 @@ let sale = [];
 console.log(order);
 
 orderId.textContent = order.id;
+orderType.textContent = order.affiliate ? "Affiliate" : "Direct";
 orderDate.textContent = new Date(order.date).toLocaleString();
 customerEmail.textContent = order.email;
 orderStatus.textContent = order.status;
@@ -49,7 +51,7 @@ order.cart.forEach((element) => {
   // user.products.find((pr) => pr._id);
   let listDiv = document.createElement("div");
   listDiv.innerHTML = ` <div class="flex text-xs py-1.5 border-b border-gray-300">
-            <span class="w-2/6 text-nowrap overflow-hidden">${element.productName}</span>
+            <span class="w-2/6 text-nowrap overflow-hidden">${element.shortName ? element.shortName : element.productName}</span>
             <span class="w-1/6 pl-2">${new Intl.NumberFormat().format(element.amount)}</span>
             <span class="w-1/6 pl-4">${element.quantity}</span>
             <span class="w-1/6 pl-4">${new Intl.NumberFormat().format(element.amount * element.quantity)}</span>
